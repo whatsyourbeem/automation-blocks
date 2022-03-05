@@ -1,10 +1,9 @@
-# copyfile.py
+# deletedirectory.py
 ##################################################
 # description
-#   : 파일을 복사 후 원하는 디렉토리에 붙여넣기
+#   : 폴더 삭제
 # parameters
-#   1. 복사하고자 하는 파일의 경로
-#   2. 붙여넣고자 하는 디렉토리의 경로
+#   1. 삭제하고자 하는 폴더의 경로
 ##################################################
 import os, sys, shutil
 
@@ -14,19 +13,12 @@ def main():
     if not isPassed:
         fail_log()
         return False
+    
+    target = sys.argv[1]
+    print(target + " -> 이 폴더를 삭제할게요.")
+    
+    shutil.rmtree(target)
 
-    origin = sys.argv[1]
-    dest = sys.argv[2]
-
-    print(origin + " -> 이 파일을")
-    print(dest + " -> 여기로 복사할게요.")
-
-    # dest 디렉토리가 없다면, 디렉토리 생성
-    if not os.path.isdir(dest):
-        print("목적지 경로를 찾을 수 없네요ㅠㅠ 제가 생성할게요!")
-        os.makedirs(dest)
-
-    shutil.copy(origin, dest)
     done_log()
 
 
@@ -36,8 +28,12 @@ def main():
 def check_validity(argv):
     isPassed = True
     # Input Argument 개수 검사
-    if len(argv) != 3:
+    if len(argv) != 2:
         print("Input 개수가 올바르지 않습니다.")
+        isPassed = False
+    # 삭제하고자 하는 파일이 있는지 검사
+    if not os.path.isdir(argv[1]):
+        print("앗 삭제하고자 하는 폴더가 이미 존재하지 않아요.")
         isPassed = False
     return isPassed
 

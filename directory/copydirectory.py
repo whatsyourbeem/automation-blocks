@@ -8,20 +8,10 @@
 ##################################################
 import os, sys, shutil
 
-def fail_log():
-    print(sys.argv[0] + " 실패:(")
-    for _ in range(100):
-        print("#", end='')
-    print('')
-
 def main():
-    for _ in range(100):
-        print("#", end='')
-    print('')
-
     print(sys.argv[0] + " 시작...")
-    if len(sys.argv) != 3:
-        print("Input 개수가 올바르지 않습니다.")
+    isPassed = check_validity(sys.argv)
+    if not isPassed:
         fail_log()
         return False
 
@@ -42,11 +32,37 @@ def main():
         if not os.path.exists(dest+'\\'+file):
             shutil.copy(origin+'\\'+file, dest+'\\'+file)
 
-    print(sys.argv[0] + " 성공:)")
+    done_log()
 
+
+##################################################
+# 예외 처리 정의
+##################################################
+def check_validity(argv):
+    isPassed = True
+    # Input Argument 개수 검사
+    if len(argv) != 3:
+        print("Input 개수가 올바르지 않습니다.")
+        isPassed = False
+    return isPassed
+
+##################################################
+# Default 영역
+##################################################
+def fail_log():
+    print(sys.argv[0] + " 실패:(")
+    for _ in range(100):
+        print("#", end='')
+    print('')
+
+def done_log():
+    print(sys.argv[0] + " 성공:)")
     for _ in range(100):
         print("#", end='')
     print('')
 
 if __name__ == "__main__":
+    for _ in range(100):
+        print("#", end='')
+    print('')
     main()
