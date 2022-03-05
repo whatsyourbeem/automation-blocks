@@ -22,8 +22,8 @@ def main():
     origin = sys.argv[1]
     dest = sys.argv[2]
 
-    print(sys.argv[1] + " -> 이 파일을")
-    print(sys.argv[2] + " -> 여기로 복사할게요.")
+    print(origin + " -> 이 파일을")
+    print(dest + " -> 여기로 복사할게요.")
 
     # dest 디렉토리가 없다면, 디렉토리 생성
     if not os.path.isdir(dest):
