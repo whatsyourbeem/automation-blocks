@@ -5,7 +5,13 @@
 # parameters
 #   1. 삭제하고자 하는 파일의 경로
 ##################################################
-import os, sys, shutil
+import os, sys
+
+def fail_log():
+    print(sys.argv[0] + " 실패:(")
+    for _ in range(100):
+        print("#", end='')
+    print('')
 
 def main():
     for _ in range(100):
@@ -14,8 +20,8 @@ def main():
 
     print(sys.argv[0] + " 시작...")
     if len(sys.argv) != 2:
-        print("Error: Input 개수가 올바르지 않습니다.")
-        print(sys.argv[0] + " 실패:(")
+        print("Input 개수가 올바르지 않습니다.")
+        fail_log()
         return False
     
     target = sys.argv[1]
@@ -23,7 +29,7 @@ def main():
 
     if not os.path.isfile(target):
         print("앗 삭제하고자 하는 파일이 이미 존재하지 않아요.")
-        print(sys.argv[0] + " 실패:(")
+        fail_log()
         return False
     
     os.remove(target)

@@ -8,6 +8,12 @@
 ##################################################
 import os, sys, shutil
 
+def fail_log():
+    print(sys.argv[0] + " 실패:(")
+    for _ in range(100):
+        print("#", end='')
+    print('')
+
 def main():
     for _ in range(100):
         print("#", end='')
@@ -15,8 +21,8 @@ def main():
 
     print(sys.argv[0] + " 시작...")
     if len(sys.argv) != 3:
-        print("Error: Input 개수가 올바르지 않습니다.")
-        print(sys.argv[0] + " 실패:(")
+        print("Input 개수가 올바르지 않습니다.")
+        fail_log()
         return False
     
     origin = sys.argv[1]
