@@ -46,18 +46,12 @@ def check_validity(argv):
 ##################################################
 def fail_log():
     print(sys.argv[0] + " 실패:(")
-    for _ in range(100):
-        print("#", end='')
-    print('')
+    print('#'*100)
 
 def done_log():
     print(sys.argv[0] + " 성공:)")
-    for _ in range(100):
-        print("#", end='')
-    print('')
+    print('#'*100)
 
 if __name__ == "__main__":
-    for _ in range(100):
-        print("#", end='')
-    print('')
+    print('#'*100)
     main()
