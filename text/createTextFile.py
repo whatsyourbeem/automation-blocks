@@ -6,7 +6,7 @@
 #   1. 생성하고자 하는 파일의 경로 (파일명 포함)
 #   2. 텍스트 파일 내용 (개행의 경우 \n으로 표시)
 ##################################################
-import sys
+import os, sys
 
 def main():
     print(sys.argv[0] + " 시작...")
@@ -19,6 +19,11 @@ def main():
     content = sys.argv[2]
 
     print(path + " -> 이 경로에 텍스트 파일을 생성할게요")
+
+    # 디렉토리가 없다면, 디렉토리 생성
+    if not os.path.isdir(os.path.dirname(path)):
+        print("목적지 경로를 찾을 수 없네요ㅠㅠ 제가 생성할게요!")
+        os.makedirs(os.path.dirname(path))
 
     f = open(path, 'w')
     content_list = content.split('\\n')
